@@ -39,7 +39,7 @@ function crearBaseDeDatos() {
     // Crear las tablas según el diagrama
     if (!db.objectStoreNames.contains("Usuario")) {
       let usuarioStore = db.createObjectStore("Usuario", { keyPath: "id_usuario", autoIncrement: true });
-      usuarioStore.createIndex("nombre", "nombre", { unique: false });
+      usuarioStore.createIndex("nombre_usuario", "nombre_usuario", { unique: false });
       usuarioStore.createIndex("codigo_sucursal", "codigo_sucursal", { unique: false });
       usuarioStore.createIndex("codigo_tipo_usuario", "codigo_tipo_usuario", { unique: false });
     }
@@ -55,11 +55,19 @@ function crearBaseDeDatos() {
     }
 
     if (!db.objectStoreNames.contains("Informe")) {
-      let informeStore = db.createObjectStore("Informe", { keyPath: ["id_usuario", "codigo_solicitud", "codigo_maquinaria"] });
+      // Crear el almacén con clave primaria autoincremental
+      let informeStore = db.createObjectStore("Informe", {
+        keyPath: "codigo_informe", // Clave primaria con autoIncrement
+        autoIncrement: true,
+      });
+    
+      // Crear índices para los campos adicionales
+      informeStore.createIndex("marca", "marca", { unique: false });
+      informeStore.createIndex("modelo", "modelo", { unique: false });
       informeStore.createIndex("descripcion", "descripcion", { unique: false });
       informeStore.createIndex("fecha_informe", "fecha_informe", { unique: false });
     }
-
+    
     if (!db.objectStoreNames.contains("Solicitud")) {
       let solicitudStore = db.createObjectStore("Solicitud", { keyPath: "codigo_solicitud", autoIncrement: true });
       solicitudStore.createIndex("codigo_maquinaria", "codigo_maquinaria", { unique: false });
@@ -101,7 +109,7 @@ function agregarUsuariosYTipos(db) {
     let adminTipoUsuarioId = event.target.result;
 
     // Insertar usuario administrador
-    agregarUsuario(db, "admin", "admin", "admin", "admin@admin.com", "admin", 1, adminTipoUsuarioId);
+    agregarUsuario(db,"admin", "admin", "admin", "admin", "admin@admin.com", "admin", 1, adminTipoUsuarioId);
     console.log("Usuario administrador creado.");
   };
 
@@ -109,7 +117,7 @@ function agregarUsuariosYTipos(db) {
     let ingenieroTipoUsuarioId = event.target.result;
 
     // Insertar usuario ingeniero
-    agregarUsuario(db, "ingeniero", "apellido1", "apellido2", "ingeniero@empresa.com", "ingeniero123", 1, ingenieroTipoUsuarioId);
+    agregarUsuario(db,"ingeniero", "ingeniero", "apellido1", "apellido2", "ingeniero@empresa.com", "ingeniero123", 1, ingenieroTipoUsuarioId);
     console.log("Usuario ingeniero creado.");
   };
 
@@ -117,7 +125,7 @@ function agregarUsuariosYTipos(db) {
     let encargadoTipoUsuarioId = event.target.result;
 
     // Insertar usuario encargado
-    agregarUsuario(db, "encargado", "apellido1", "apellido2", "encargado@empresa.com", "encargado123", 1, encargadoTipoUsuarioId);
+    agregarUsuario(db, "encargado","encargado", "apellido1", "apellido2", "encargado@empresa.com", "encargado123", 1, encargadoTipoUsuarioId);
     console.log("Usuario encargado creado.");
   };
 
@@ -135,11 +143,12 @@ function agregarUsuariosYTipos(db) {
 }
 
 // Función para agregar un usuario
-function agregarUsuario(db, nombre, apellidoPaterno, apellidoMaterno, correo, contrasena, codigoSucursal, codigoTipoUsuario) {
+function agregarUsuario(db, nombre_usuario, nombre, apellidoPaterno, apellidoMaterno, correo, contrasena, codigoSucursal, codigoTipoUsuario) {
   let transaction = db.transaction("Usuario", "readwrite");
   let usuarioStore = transaction.objectStore("Usuario");
 
   usuarioStore.add({
+    nombre_usuario: nombre_usuario,
     nombre: nombre,
     apellido_paterno: apellidoPaterno,
     apellido_materno: apellidoMaterno,

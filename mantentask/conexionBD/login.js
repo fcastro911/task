@@ -25,7 +25,7 @@ function verificarCredenciales(db, nombreUsuario, password) {
     const usuarioStore = transaction.objectStore("Usuario");
 
     // Crear índice para buscar por nombre de usuario
-    const index = usuarioStore.index("nombre");
+    const index = usuarioStore.index("nombre_usuario");
     const request = index.get(nombreUsuario);
 
     request.onsuccess = (event) => {

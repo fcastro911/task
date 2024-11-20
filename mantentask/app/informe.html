@@ -16,11 +16,14 @@
 
     <!-- Formulario -->
     <form id="formInforme" class="card p-4 shadow-sm">
+      <!-- Casillas Marca y Modelo -->
       <div class="mb-3">
-        <label for="maquina" class="form-label">Máquina:</label>
-        <select id="maquina" name="maquina" class="form-select" required>
-          <!-- Opciones dinámicas basadas en la base de datos -->
-        </select>
+        <label for="marca" class="form-label">Marca:</label>
+        <input type="text" id="marca" name="marca" class="form-control" placeholder="Ingrese la marca" required>
+      </div>
+      <div class="mb-3">
+        <label for="modelo" class="form-label">Modelo:</label>
+        <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Ingrese el modelo" required>
       </div>
 
       <div class="mb-3">

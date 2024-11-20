@@ -1,5 +1,5 @@
 
-  // Configuración de la base de datos
+// Configuración de la base de datos
   const dbName = "miBaseDeDatos";
   const dbVersion = 1;
   let db;
@@ -13,6 +13,7 @@
       if (!db.objectStoreNames.contains("Usuario")) {
         const usuarioStore = db.createObjectStore("Usuario", { keyPath: "id", autoIncrement: true });
         usuarioStore.createIndex("email", "email", { unique: true });
+        
       }
     };
 
@@ -54,7 +55,7 @@
   }
 
   // Validar contraseñas
-  function validarContrasenas(password, confirmPassword) {
+  function validarContrasenas(contrasena, confirmPassword) {
     return password === confirmPassword;
   }
 
@@ -68,7 +69,7 @@
     const apellidoPaterno = document.getElementById("apellido_paterno").value.trim();
     const apellidoMaterno = document.getElementById("apellido_materno").value.trim();
     const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+    const contrasena = document.getElementById("password").value.trim();
     const confirmPassword = document.getElementById("confirm_password").value.trim();
     const tipoUsuario = document.getElementById("tipo_usuario").value;
     const sucursal = document.getElementById("sucursal").value;
