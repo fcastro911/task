@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Solicitud</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="display-4 text-primary">Registro de Solicitud</h1>
+      <p class="lead text-muted">Complete el formulario para registrar una nueva solicitud</p>
+    </div>
+
+    <!-- Formulario -->
+    <form action="/ruta-al-backend-para-solicitud" method="POST" class="card p-4 shadow-sm">
+      <div class="mb-3">
+        <label for="maquina" class="form-label">Máquina:</label>
+        <select id="maquina" name="maquina" class="form-select" required>
+          <option value="1">Esmeril</option>
+          <option value="2">Compresor</option>
+          <option value="3">Taladro</option>
+          <!-- Opciones dinámicas basadas en la base de datos -->
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" class="form-control" rows="4" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="estado" class="form-label">Estado:</label>
+        <select id="estado" name="estado" class="form-select" required>
+          <option value="1">Urgente</option>
+          <option value="2">Normal</option>
+          <option value="3">Tranquilo</option>
+          <!-- Opciones dinámicas basadas en la base de datos -->
+        </select>
+      </div>
+
+      <!-- Botones -->
+      <div class="d-flex justify-content-between flex-wrap">
+        <button type="submit" id="registrar-btn" class="btn btn-primary mb-2">Registrar</button>
+        <button type="button" id="modificar-btn" class="btn btn-warning mb-2">Modificar</button>
+        <button type="button" id="eliminar-btn" class="btn btn-danger mb-2">Eliminar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scripts -->
+  <script src="/validaciones/inputText.js"></script>
+  <script src="/validaciones/textArea.js"></script>
+  <script src="/conexionBD/solicitud.js"></script>
+</body>
+</html>

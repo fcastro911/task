@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center vh-100">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-4">
+        <!-- Card de Inicio de Sesión -->
+        <div class="card shadow">
+          <div class="card-body">
+            <h1 class="text-center text-primary mb-4">Iniciar Sesión</h1>
+            <form id="loginForm">
+              <!-- Campo de Nombre de Usuario -->
+              <div class="mb-3">
+                <label for="nombre_usuario" class="form-label">Nombre de Usuario:</label>
+                <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="Ingresa tu usuario" required>
+              </div>
+
+              <!-- Campo de Contraseña -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+              </div>
+
+              <!-- Botón de Enviar -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+              </div>
+            </form>
+
+            <!-- Link de Recuperación -->
+            <div class="text-center mt-3">
+              <a href="recuperacion.html" class="text-decoration-none text-muted">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Validación y Lógica de Inicio de Sesión -->
+  <script src="/conexionBD/login.js"></script>
+</body>
+</html>

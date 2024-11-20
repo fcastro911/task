@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="display-4 text-primary">Registro de Usuario</h1>
+      <p class="lead text-muted">Complete el formulario para registrar un nuevo usuario</p>
+    </div>
+
+    <!-- Formulario -->
+    <form action="/ruta-al-backend-para-usuario" method="POST" class="card p-4 shadow-sm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="nombre_usuario" class="form-label">Nombre de Usuario:</label>
+          <input type="text" id="nombre_usuario" name="nombre_usuario" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" class="form-control" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="apellido_paterno" class="form-label">Apellido Paterno:</label>
+          <input type="text" id="apellido_paterno" name="apellido_paterno" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label for="apellido_materno" class="form-label">Apellido Materno:</label>
+          <input type="text" id="apellido_materno" name="apellido_materno" class="form-control">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="email" class="form-label">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label for="password" class="form-label">Contraseña:</label>
+          <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="confirm_password" class="form-label">Confirmar Contraseña:</label>
+          <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label for="tipo_usuario" class="form-label">Tipo de Usuario:</label>
+          <select id="tipo_usuario" name="tipo_usuario" class="form-select" required>
+            <option value="1">Administrador</option>
+            <option value="2">Ingeniero</option>
+            <option value="3">Encargado</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="sucursal" class="form-label">Sucursal:</label>
+        <select id="sucursal" name="sucursal" class="form-select" required>
+          <option value="1">Santiago</option>
+          <option value="2">Talca</option>
+          <option value="3">Valparaíso</option>
+        </select>
+      </div>
+
+      <!-- Botones -->
+      <div class="d-flex justify-content-between">
+        <button type="submit" id="registrar-btn" class="btn btn-primary">Registrar</button>
+        <button type="button" id="modificar-btn" class="btn btn-warning">Modificar</button>
+        <button type="button" id="eliminar-btn" class="btn btn-danger">Eliminar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scripts de validación -->
+  <script src="/validaciones/inputText.js"></script>
+  <script src="/conexionBD/registroUsuario.js"></script>
+</body>
+</html>
