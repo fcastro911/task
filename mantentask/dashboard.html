@@ -10,7 +10,7 @@
 <body class="bg-light">
   <div class="container py-5">
     <div class="text-center mb-5">
-      <h1 class="display-4 text-primary">Dashboard</h1>
+      <h1 class="display-4 text-primary">Dashboard Administrador</h1>
       <p class="lead text-muted">Seleccione una opción para continuar:</p>
     </div>
 
@@ -47,9 +47,7 @@
       <div class="col-12 col-md-6 col-lg-4 draggable">
         <button class="btn btn-outline-primary w-100" data-url="/admin/estado.html">Estado</button>
       </div>
-      <div class="col-12 col-md-6 col-lg-4 draggable">
-        <button class="btn btn-outline-primary w-100" data-url="/admin/tipoUsuario.html">Tipo de Usuario</button>
-      </div>
+
     </div>
 
     <!-- Opciones de Sesión -->
@@ -64,6 +62,24 @@
   <!-- SortableJS -->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
   <script src="/interaccion/dashboard.js"></script>
+
+  <script>
+    // Verificar si el usuario está autenticado
+    if (!localStorage.getItem("isAuthenticated")) {
+      window.location.href = "/login.html";  // Redirige al login si no está autenticado
+    }
+
+    // Función para cerrar sesión
+    document.getElementById("logoutButton").addEventListener("click", function() {
+      // Eliminar la información del localStorage
+      localStorage.removeItem("isAuthenticated");
+      localStorage.removeItem("tipoUsuario");
+
+      // Redirigir al login
+      window.location.href = "/login.html";
+    });
+  </script>
+
   <style>
     /* Estilo del elemento arrastrado */
     .sortable-ghost {
