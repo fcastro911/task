@@ -15,7 +15,7 @@
     </div>
 
     <!-- Formulario -->
-    <form action="/ruta-al-backend-para-solicitud" method="POST" class="card p-4 shadow-sm">
+    <form action="../php/crear_solicitud.php" method="POST" class="card p-4 shadow-sm">
       <div class="mb-3">
         <label for="maquina" class="form-label">Máquina:</label>
         <select id="maquina" name="maquina" class="form-select" required>
@@ -42,11 +42,10 @@
       </div>
 
       <!-- Botones -->
-      <div class="d-flex justify-content-between flex-wrap">
+      <div class="d-flex justify-content-center">
         <button type="submit" id="registrar-btn" class="btn btn-primary mb-2">Registrar</button>
-        <button type="button" id="modificar-btn" class="btn btn-warning mb-2">Modificar</button>
-        <button type="button" id="eliminar-btn" class="btn btn-danger mb-2">Eliminar</button>
       </div>
+      
     </form>
   </div>
 
@@ -55,13 +54,5 @@
   <!-- Scripts -->
   <script src="/validaciones/inputText.js"></script>
   <script src="/validaciones/textArea.js"></script>
-  <script src="/conexionBD/solicitud.js"></script>
-  <script>
-    // Verificar si el usuario está autenticado
-    if (!localStorage.getItem("isAuthenticated")) {
-  window.location.href = "/login.html";  // Redirige al login si no está autenticado
-}
-
-</script>
 </body>
 </html>
