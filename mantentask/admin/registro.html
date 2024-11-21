@@ -89,5 +89,12 @@
   <!-- Scripts de validación -->
   <script src="/validaciones/inputText.js"></script>
   <script src="/conexionBD/registroUsuario.js"></script>
+  <script>
+    // Verificar si el usuario está autenticado
+    if (!localStorage.getItem("isAuthenticated")) {
+  window.location.href = "/login.html";  // Redirige al login si no está autenticado
+}
+
+</script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 // Configuración de la base de datos
   const dbName = "miBaseDeDatos";
   const dbVersion = 1;
@@ -11,8 +10,8 @@
     request.onupgradeneeded = (event) => {
       db = event.target.result;
       if (!db.objectStoreNames.contains("Usuario")) {
-        const usuarioStore = db.createObjectStore("Usuario", { keyPath: "id", autoIncrement: true });
-        usuarioStore.createIndex("email", "email", { unique: true });
+        const usuarioStore = db.createObjectStore("Usuario", { keyPath: "id_usuario", autoIncrement: true });
+        usuarioStore.createIndex("nombre_usuario", "nombre_usuario", { unique: false });
         
       }
     };
@@ -55,7 +54,7 @@
   }
 
   // Validar contraseñas
-  function validarContrasenas(contrasena, confirmPassword) {
+  function validarContrasenas(password, confirmPassword) {
     return password === confirmPassword;
   }
 
@@ -68,20 +67,20 @@
     const nombre = document.getElementById("nombre").value.trim();
     const apellidoPaterno = document.getElementById("apellido_paterno").value.trim();
     const apellidoMaterno = document.getElementById("apellido_materno").value.trim();
-    const email = document.getElementById("email").value.trim();
+    const correo_electronico = document.getElementById("email").value.trim();
     const contrasena = document.getElementById("password").value.trim();
     const confirmPassword = document.getElementById("confirm_password").value.trim();
     const tipoUsuario = document.getElementById("tipo_usuario").value;
     const sucursal = document.getElementById("sucursal").value;
 
     // Validar contraseñas
-    if (!validarContrasenas(password, confirmPassword)) {
+    if (!validarContrasenas(contrasena, contrasena)) {
       alert("Las contraseñas no coinciden.");
       return;
     }
 
     // Validar campos obligatorios
-    if (!nombreUsuario || !nombre || !apellidoPaterno || !email || !password) {
+    if (!nombreUsuario || !nombre || !apellidoPaterno || !correo_electronico || !contrasena ) {
       alert("Por favor, complete todos los campos obligatorios.");
       return;
     }
@@ -89,11 +88,11 @@
     // Crear el objeto usuario
     const datosUsuario = {
       nombre_usuario: nombreUsuario,
-      nombre,
+      nombre: nombre,
       apellido_paterno: apellidoPaterno,
       apellido_materno: apellidoMaterno,
-      email,
-      password, // Nota: En un sistema real, nunca guardes contraseñas en texto plano.
+      correo_electronico: correo_electronico,
+      contrasena, // Nota: En un sistema real, nunca guardes contraseñas en texto plano.
       tipo_usuario: parseInt(tipoUsuario),
       sucursal: parseInt(sucursal),
     };

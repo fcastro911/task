@@ -36,7 +36,7 @@ function crearBaseDeDatos() {
   request.onupgradeneeded = (event) => {
     let db = event.target.result;
 
-    // Crear las tablas según el diagrama
+    // Creación de Tablas
     if (!db.objectStoreNames.contains("Usuario")) {
       let usuarioStore = db.createObjectStore("Usuario", { keyPath: "id_usuario", autoIncrement: true });
       usuarioStore.createIndex("nombre_usuario", "nombre_usuario", { unique: false });

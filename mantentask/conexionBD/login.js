@@ -19,7 +19,7 @@ function openDatabase() {
 }
 
 // Función para verificar usuario y contraseña
-function verificarCredenciales(db, nombreUsuario, password) {
+function verificarCredenciales(db, nombreUsuario, contrasena) {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(["Usuario"], "readonly");
     const usuarioStore = transaction.objectStore("Usuario");
@@ -31,7 +31,7 @@ function verificarCredenciales(db, nombreUsuario, password) {
     request.onsuccess = (event) => {
       const usuario = event.target.result;
       if (usuario) {
-        if (usuario.contrasena === password) {
+        if (usuario.contrasena === contrasena) {
           resolve(usuario); // Credenciales correctas, devolver el usuario
         } else {
           resolve(false); // Contraseña incorrecta
@@ -64,11 +64,23 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     if (usuario) {
       alert("Inicio de sesión exitoso");
 
-      // Guardar el tipo de usuario en el localStorage
+      // Guardar el token o variable en localStorage que indica que el usuario está autenticado
+      localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("tipoUsuario", usuario.codigo_tipo_usuario);
 
-      // Redirigir al dashboard
-      window.location.href = "/dashboard.html";  // Verifica que la ruta esté correcta
+      // Redirigir según el tipo de usuario
+      if (usuario.codigo_tipo_usuario === 1) {
+        // Usuario administrador
+        window.location.href = "/admin.html";
+      } else if (usuario.codigo_tipo_usuario === 2) {
+        // Usuario ingeniero
+        window.location.href = "/ingeniero.html";
+      } else if (usuario.codigo_tipo_usuario === 3) {
+        // Usuario encargado
+        window.location.href = "/encargado.html";
+      } else {
+        alert("Tipo de usuario no reconocido");
+      }
     } else {
       alert("Nombre de usuario o contraseña incorrectos");
     }
@@ -76,3 +88,4 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     console.log("Error durante el inicio de sesión", error);
   }
 });
+

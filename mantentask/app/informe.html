@@ -54,5 +54,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   <script src="/app/pdf/pdf.js"></script>
   <script src="/conexionBD/informe.js"></script> <!-- Archivo JS que crearás -->
+  <script>
+    // Verificar si el usuario está autenticado
+    if (!localStorage.getItem("isAuthenticated")) {
+  window.location.href = "/login.html";  // Redirige al login si no está autenticado
+}
+</script>
 </body>
 </html>
